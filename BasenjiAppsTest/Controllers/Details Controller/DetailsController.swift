@@ -16,6 +16,7 @@ class DetailsController: UIViewController {
   private let avatarImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.image = UIImage(named: "userAvatar")
     return imageView
   }()
   
@@ -65,7 +66,7 @@ class DetailsController: UIViewController {
     return label
   }()
   
-  var item: RepositoriesDataModel?
+  var item: Repositories?
   private let date = Date()
   
   //MARK: - Setup View
@@ -128,10 +129,10 @@ class DetailsController: UIViewController {
       avatarImageView.downloaded(from: avatarURL)
     }
     
-    repoLaguage.text = itemObject.language
-    lastDateUpdate.text = "Last update:" + date.string(format: itemObject.updatedAt)
+    repoLaguage.text = itemObject.languege
+    lastDateUpdate.text = "Last update:" + date.string(format: itemObject.updateAt)
     fullRepoNameLabel.text = itemObject.fullName
-    repoDiscriptoinLabel.text = itemObject.itemDescription
-    repoURLLinkLabel.text = itemObject.htmlURL
+    repoDiscriptoinLabel.text = itemObject.descript
+    repoURLLinkLabel.text = itemObject.url
   }
 }

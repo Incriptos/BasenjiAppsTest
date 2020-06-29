@@ -71,7 +71,7 @@ class ListController: UIViewController {
     view.addSubview(searchTextField)
     view.addSubview(searchButton)
     view.addSubview(listCollectionView)
-    listCollectionView.addSubview(activity)
+    view.addSubview(activity)
   }
   
   //MARK: - Setup Constraints
@@ -106,21 +106,28 @@ class ListController: UIViewController {
   
   //MARK: - Life cycle
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    presenter.fetchDataFromCoreData()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setupViews()
     setupConstraints()
     setupNavigationBar()
-    
+    presenter.fetchDataFromCoreData()
   }
   
   
   @objc
   private func searchButtonTapped(_ sender: UIButton) {
     activity.isHidden = false
+    listCollectionView.isHidden = true
     guard let searchString = searchTextField.text else { return }
     presenter.getSearchByName(repoName: searchString)
+ 
   }
   
 }
@@ -131,6 +138,7 @@ extension ListController: ListPresenterDelegate {
     
     DispatchQueue.main.async {
       self.activity.isHidden = true
+      self.listCollectionView.isHidden = false
       self.listCollectionView.reloadData()
     }
     
@@ -141,7 +149,9 @@ extension ListController: ListPresenterDelegate {
     DispatchQueue.main.async {
       self.activity.isHidden = true
       let alertController = UIAlertController(title: "Ошибка", message: "Что-то пошло не так", preferredStyle: .alert)
-      let okButton = UIAlertAction(title: "ОК", style: .cancel) { action in }
+      let okButton = UIAlertAction(title: "ОК", style: .cancel) { action in
+        self.listCollectionView.isHidden = false
+      }
       alertController.addAction(okButton)
       self.present(alertController, animated: true, completion: nil)
     }

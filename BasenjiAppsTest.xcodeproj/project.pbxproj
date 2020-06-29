@@ -10,6 +10,10 @@
 		831A133224AA540500801606 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A133124AA540500801606 /* Decoder.swift */; };
 		831A133424AA5CE000801606 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A133324AA5CE000801606 /* Status.swift */; };
 		831A133724AA5EA900801606 /* RepositoriesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A133624AA5EA900801606 /* RepositoriesDataModel.swift */; };
+		831A133E24AA814200801606 /* Repositories.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 831A133C24AA814200801606 /* Repositories.xcdatamodeld */; };
+		831A134224AA825600801606 /* Repositories+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A134024AA825500801606 /* Repositories+CoreDataClass copy.swift */; };
+		831A134324AA825600801606 /* Repositories+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A134124AA825600801606 /* Repositories+CoreDataProperties copy.swift */; };
+		831A134524AA829D00801606 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A134424AA829D00801606 /* CoreDataManager.swift */; };
 		836EFFDC24A74A3100A4D63B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EFFDB24A74A3100A4D63B /* AppDelegate.swift */; };
 		836EFFDE24A74A3100A4D63B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EFFDD24A74A3100A4D63B /* SceneDelegate.swift */; };
 		836EFFE024A74A3100A4D63B /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EFFDF24A74A3100A4D63B /* ListController.swift */; };
@@ -34,6 +38,10 @@
 		831A133124AA540500801606 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		831A133324AA5CE000801606 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		831A133624AA5EA900801606 /* RepositoriesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDataModel.swift; sourceTree = "<group>"; };
+		831A133D24AA814200801606 /* Repositories.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Repositories.xcdatamodel; sourceTree = "<group>"; };
+		831A134024AA825500801606 /* Repositories+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Repositories+CoreDataClass copy.swift"; sourceTree = "<group>"; };
+		831A134124AA825600801606 /* Repositories+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Repositories+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
+		831A134424AA829D00801606 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		836EFFD824A74A3100A4D63B /* BasenjiAppsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasenjiAppsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836EFFDB24A74A3100A4D63B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836EFFDD24A74A3100A4D63B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +99,17 @@
 			path = "Status ";
 			sourceTree = "<group>";
 		};
+		831A133F24AA815400801606 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				831A134024AA825500801606 /* Repositories+CoreDataClass copy.swift */,
+				831A134124AA825600801606 /* Repositories+CoreDataProperties copy.swift */,
+				831A133C24AA814200801606 /* Repositories.xcdatamodeld */,
+				831A134424AA829D00801606 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		836EFFCF24A74A3100A4D63B = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +135,7 @@
 				83C1A33424AA2FC2006E4197 /* Model */,
 				83FB476C24A755DA00F84BC5 /* Controllers */,
 				83FB476B24A755B900F84BC5 /* Resources */,
+				831A133F24AA815400801606 /* CoreData */,
 				83FB477924A8D84700F84BC5 /* Networking */,
 				83C1A33124AA162F006E4197 /* Extensitons */,
 				836EFFE924A74A3300A4D63B /* Info.plist */,
@@ -326,9 +346,13 @@
 				831A133724AA5EA900801606 /* RepositoriesDataModel.swift in Sources */,
 				83FB477524A75D6600F84BC5 /* ListCollectionViewCell.swift in Sources */,
 				83C1A32C24A9FE7E006E4197 /* ListPresenter.swift in Sources */,
+				831A133E24AA814200801606 /* Repositories.xcdatamodeld in Sources */,
 				83FB476E24A75A8000F84BC5 /* DetailsController.swift in Sources */,
 				83FB478224A9371000F84BC5 /* NetworkService.swift in Sources */,
+				831A134524AA829D00801606 /* CoreDataManager.swift in Sources */,
 				836EFFE024A74A3100A4D63B /* ListController.swift in Sources */,
+				831A134324AA825600801606 /* Repositories+CoreDataProperties copy.swift in Sources */,
+				831A134224AA825600801606 /* Repositories+CoreDataClass copy.swift in Sources */,
 				83FB477E24A914F300F84BC5 /* ResponseRepositoriesModel.swift in Sources */,
 				83C1A33024AA1621006E4197 /* UIImageView.swift in Sources */,
 				83FB477224A75D4B00F84BC5 /* ListCollectionView.swift in Sources */,
@@ -536,6 +560,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		831A133C24AA814200801606 /* Repositories.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				831A133D24AA814200801606 /* Repositories.xcdatamodel */,
+			);
+			currentVersion = 831A133D24AA814200801606 /* Repositories.xcdatamodel */;
+			path = Repositories.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 836EFFD024A74A3100A4D63B /* Project object */;
 }

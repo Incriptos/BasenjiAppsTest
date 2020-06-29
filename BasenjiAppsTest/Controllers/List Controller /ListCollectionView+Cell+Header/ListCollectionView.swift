@@ -14,7 +14,7 @@ extension ListController: UICollectionViewDataSource, UICollectionViewDelegate, 
   //MARK: - numberOfItemsInSection
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return presenter.sortedRepos.count
+    return presenter.sortedCoreRepos.count
 
   }
   
@@ -23,14 +23,15 @@ extension ListController: UICollectionViewDataSource, UICollectionViewDelegate, 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.cellId, for: indexPath) as! ListCollectionViewCell
     
-    let item = presenter.sortedRepos[indexPath.row]
+    let item = presenter.sortedCoreRepos[indexPath.row]
     
-    return cell.configureCell(name: item.name, starCount: item.starzCount, avatarURL: item.avatar)
+    
+    return cell.configureCell(name: item.name, starCount: Int(item.starz), avatarURL: item.avatar)
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-    let item = presenter.sortedRepos[indexPath.row]
+    let item = presenter.sortedCoreRepos[indexPath.row]
     
     let controller: DetailsController = DetailsController()
     controller.item = item

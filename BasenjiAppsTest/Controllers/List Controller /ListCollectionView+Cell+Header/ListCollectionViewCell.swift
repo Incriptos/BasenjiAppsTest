@@ -29,7 +29,6 @@ class ListCollectionViewCell: UICollectionViewCell {
     label.font = .systemFont(ofSize: 14, weight: .bold)
     label.textColor = .black
     label.numberOfLines = 0
-    label.text = "Repo name hihihi"
     return label
   }()
   
