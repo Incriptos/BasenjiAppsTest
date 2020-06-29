@@ -30,9 +30,10 @@ extension ListController: UICollectionViewDataSource, UICollectionViewDelegate, 
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-    let item = presenter.repos[indexPath.row]
+    let item = presenter.sortedRepos[indexPath.row]
     
     let controller: DetailsController = DetailsController()
+    controller.item = item
     navigationController?.pushViewController(controller, animated: true)
   }
   

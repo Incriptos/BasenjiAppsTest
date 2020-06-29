@@ -13,7 +13,7 @@ import Alamofire
 final class NetworkService {
   
   typealias onSuccessCompletion = (decodableModel) -> ()
-  typealias onFailureCompletion = (Errors) -> ()
+  typealias onFailureCompletion = (Error) -> ()
    typealias decodableModel = Decodable
   
   static let shared = NetworkService()
@@ -22,31 +22,28 @@ final class NetworkService {
     
   private let baseURL = "https://api.github.com/search/repositories"
   
-  func fetchSearchResult<D: Decodable>(searchText: String, resModel: D.Type, onSuccess: @escaping onSuccessCompletion, onError: @escaping onFailureCompletion) {
+  func fetchSearchResult(searchText: String, onSuccess: @escaping onSuccessCompletion, onFailure: @escaping onFailureCompletion) {
     
     let params = ["q": "\(searchText)"]
     
     AF.request(baseURL, method: .get, parameters: params, encoding: URLEncoding.default).responseData { response in
     
       guard let data = response.data else {
-        print(Errors.cantGetData.log)
-        onError(.cantGetData)
+        onFailure(Error.self as! Error)
         return
       }
             
       //MARK: - Decode response
       let decoder = MyDecoder(data: data)
       
-      switch decoder.decode(model: resModel) {
+      switch decoder.decode(model: ResponseRepositoriesModel.self) {
         
       case .success(let responseModel):
       
         onSuccess(responseModel)
       
       case .failure(let error):
-        
-        print(error.log)
-        onError(error)
+        onFailure(error)
       }
     }
   }

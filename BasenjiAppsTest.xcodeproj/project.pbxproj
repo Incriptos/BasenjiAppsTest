@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		831A133024AA51B700801606 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A132F24AA51B700801606 /* Errors.swift */; };
 		831A133224AA540500801606 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A133124AA540500801606 /* Decoder.swift */; };
 		831A133424AA5CE000801606 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A133324AA5CE000801606 /* Status.swift */; };
 		831A133724AA5EA900801606 /* RepositoriesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A133624AA5EA900801606 /* RepositoriesDataModel.swift */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		01A6A0EE4F2DD45BC3B34CD7 /* Pods-BasenjiAppsTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasenjiAppsTest.debug.xcconfig"; path = "Target Support Files/Pods-BasenjiAppsTest/Pods-BasenjiAppsTest.debug.xcconfig"; sourceTree = "<group>"; };
 		3906C599CBE41661514CC014 /* Pods-BasenjiAppsTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasenjiAppsTest.release.xcconfig"; path = "Target Support Files/Pods-BasenjiAppsTest/Pods-BasenjiAppsTest.release.xcconfig"; sourceTree = "<group>"; };
-		831A132F24AA51B700801606 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		831A133124AA540500801606 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		831A133324AA5CE000801606 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		831A133624AA5EA900801606 /* RepositoriesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDataModel.swift; sourceTree = "<group>"; };
@@ -85,13 +83,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		831A133524AA5D6600801606 /* Status + Errors */ = {
+		831A133524AA5D6600801606 /* Status  */ = {
 			isa = PBXGroup;
 			children = (
-				831A132F24AA51B700801606 /* Errors.swift */,
 				831A133324AA5CE000801606 /* Status.swift */,
 			);
-			path = "Status + Errors";
+			path = "Status ";
 			sourceTree = "<group>";
 		};
 		836EFFCF24A74A3100A4D63B = {
@@ -205,7 +202,7 @@
 			children = (
 				83FB478124A9371000F84BC5 /* NetworkService.swift */,
 				831A133124AA540500801606 /* Decoder.swift */,
-				831A133524AA5D6600801606 /* Status + Errors */,
+				831A133524AA5D6600801606 /* Status  */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -331,7 +328,6 @@
 				83C1A32C24A9FE7E006E4197 /* ListPresenter.swift in Sources */,
 				83FB476E24A75A8000F84BC5 /* DetailsController.swift in Sources */,
 				83FB478224A9371000F84BC5 /* NetworkService.swift in Sources */,
-				831A133024AA51B700801606 /* Errors.swift in Sources */,
 				836EFFE024A74A3100A4D63B /* ListController.swift in Sources */,
 				83FB477E24A914F300F84BC5 /* ResponseRepositoriesModel.swift in Sources */,
 				83C1A33024AA1621006E4197 /* UIImageView.swift in Sources */,

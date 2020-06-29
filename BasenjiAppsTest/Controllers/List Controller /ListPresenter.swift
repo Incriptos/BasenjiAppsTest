@@ -28,7 +28,7 @@ class ListPresenter {
   
   func getSearchByName(repoName: String) {
     
-    NetworkService.shared.fetchSearchResult(searchText: repoName, resModel: ResponseRepositoriesModel.self, onSuccess: { [weak self] response in
+    NetworkService.shared.fetchSearchResult(searchText: repoName, onSuccess: { [weak self] response in
       guard let `self` = self else { return }
       
       let model = response as! ResponseRepositoriesModel

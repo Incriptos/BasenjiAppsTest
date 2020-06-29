@@ -65,7 +65,7 @@ class DetailsController: UIViewController {
     return label
   }()
   
-  var item: Item?
+  var item: RepositoriesDataModel?
   private let date = Date()
   
   //MARK: - Setup View
@@ -124,15 +124,11 @@ class DetailsController: UIViewController {
   private func setupController() {
     
     guard let itemObject = item else { return }
-    guard let avatarURL = item?.owner.avatarURL else { return }
-    
-    avatarImageView.downloaded(from: avatarURL)
-    if itemObject.language == nil {
-      repoLaguage.text = "Неизвестно"
-    } else {
-      repoLaguage.text = itemObject.language
+    if let avatarURL = item?.avatar {
+      avatarImageView.downloaded(from: avatarURL)
     }
-
+    
+    repoLaguage.text = itemObject.language
     lastDateUpdate.text = "Last update:" + date.string(format: itemObject.updatedAt)
     fullRepoNameLabel.text = itemObject.fullName
     repoDiscriptoinLabel.text = itemObject.itemDescription

@@ -41,6 +41,7 @@ class ListController: UIViewController {
     
     view.backgroundColor = .white
     view.addSubview(listCollectionView)
+  
   }
   
   //MARK: - Setup Constraints
@@ -51,6 +52,8 @@ class ListController: UIViewController {
     listCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
     listCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     listCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    
+    
   }
   
   private func setupNavigationBar() {
@@ -84,6 +87,8 @@ extension ListController: ListPresenterDelegate {
   }
   
   func showError() {
+   
+    
     
   }
   

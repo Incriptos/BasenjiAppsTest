@@ -21,12 +21,12 @@ class MyDecoder: JSONDecoder {
   
   //MARK: - Decode
   
-  func decode<T: Decodable>(model: T.Type) -> Result<T, Errors> {
+  func decode<T: Decodable>(model: T.Type) -> Result<T, Error> {
     do {
       let resModel = try self.decode(model, from: data)
       return .success(resModel)
-    } catch {
-      return .failure(.decodeResponseError)
+    } catch let error {
+      return .failure(error)
     }
   }
   
