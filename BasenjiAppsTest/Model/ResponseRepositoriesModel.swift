@@ -10,14 +10,10 @@ import Foundation
 
 struct ResponseRepositoriesModel: Decodable {
   
-    let totalCount: Int
-    let incompleteResults: Bool
     let items: [Item]
 
     enum CodingKeys: String, CodingKey {
       
-        case totalCount = "total_count"
-        case incompleteResults = "incomplete_results"
         case items = "items"
     }
 }
@@ -31,7 +27,6 @@ struct Item: Decodable {
   let owner: Owner
   let htmlURL: String
   let itemDescription: String?
-  let url: String
   let updatedAt: String
   let starzCount: Int
   let language: String?
@@ -43,7 +38,6 @@ struct Item: Decodable {
     case owner
     case htmlURL = "html_url"
     case itemDescription = "description"
-    case url
     case updatedAt = "updated_at"
     case starzCount = "stargazers_count"
     case language = "language"
