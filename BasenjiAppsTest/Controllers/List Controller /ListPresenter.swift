@@ -13,7 +13,6 @@ protocol ListPresenterDelegate: class {
   
   func updateUI()
   func showError()
-  
 }
 
 class ListPresenter {
@@ -29,18 +28,26 @@ class ListPresenter {
   
   func getSearchByName(repoName: String) {
     
-    NetworkService.shared.fetchSearchResult(searchText: repoName) { [weak self] response in
-      self?.repos.removeAll()
-      self?.repos = response?.items ?? []
+    NetworkService.shared.fetchSearchResult(searchText: repoName, resModel: ResponseRepositoriesModel.self, onSuccess: { response in
       
+      print(response)
       
+    }) { errors in
       
-      self?.sortByStars()
-      self?.delegate?.updateUI()
+      print(errors)
+      
     }
+    
+    
   }
+
   
-  func sortByStars() {
+  
+  
+  
+  
+  
+ private func sortByStars() {
     sortedRepos.removeAll()
     sortedRepos = self.repos.sorted {$0.starzCount > $1.starzCount}
   }
@@ -49,3 +56,11 @@ class ListPresenter {
   
 }
 
+
+//
+//
+//guard let `self` = self else { return }
+//self.repos.removeAll()
+//self.repos = response?.items ?? []
+//self.sortByStars()
+//self.delegate?.updateUI()

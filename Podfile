@@ -9,6 +9,5 @@ target 'BasenjiAppsTest' do
   # Pods for BasenjiAppsTest
 
   pod 'Alamofire'
-  pod 'Kingfisher'
   
 end

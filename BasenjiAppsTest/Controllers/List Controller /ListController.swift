@@ -12,8 +12,6 @@ class ListController: UIViewController {
 
   //MARK: - UI
   
-  private let searchController = UISearchController(searchResultsController: nil)
-  
   private lazy var listCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -30,20 +28,18 @@ class ListController: UIViewController {
   }()
   
   //MARK: - Presenter
+  
    lazy var presenter: ListPresenter = {
      let presenter = ListPresenter()
      presenter.delegate = self
      return presenter
    }()
-  
-  //MARK: - Vars & Lets
-  
-  private var timer = Timer()
-  
+    
   //MARK: - Setup View
   
   private func setupViews() {
     
+    view.backgroundColor = .white
     view.addSubview(listCollectionView)
   }
   
@@ -62,13 +58,6 @@ class ListController: UIViewController {
     navigationItem.title = "User search"
   }
   
-  private func setupSearchBar() {
-    
-    navigationItem.searchController = searchController
-    navigationItem.hidesSearchBarWhenScrolling = false
-    searchController.searchBar.delegate = self
-  }
-  
   //MARK: - Life cycle
   
   override func viewDidLoad() {
@@ -77,22 +66,12 @@ class ListController: UIViewController {
     setupViews()
     setupConstraints()
     setupNavigationBar()
-    setupSearchBar()
   
-    view.backgroundColor = .white
+    presenter.getSearchByName(repoName: "Swift")
+  
   }
 }
 
-extension ListController: UISearchBarDelegate {
-  
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    
-    timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
-      self?.presenter.getSearchByName(repoName: searchText)
-    })
-    
-  }
-}
 
 extension ListController: ListPresenterDelegate {
   

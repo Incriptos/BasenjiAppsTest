@@ -12,39 +12,41 @@ import Alamofire
 
 final class NetworkService {
   
+  typealias onSuccessCompletion = (decodableModel) -> ()
+  typealias onFailureCompletion = (Errors) -> ()
+   typealias decodableModel = Decodable
+  
   static let shared = NetworkService()
   
   init() { }
     
-  let baseURL = "https://api.github.com/search/repositories"
+  private let baseURL = "https://api.github.com/search/repositories"
   
-  func fetchSearchResult(searchText: String, competion: @escaping (ResponseRepositoriesModel?) -> Void) {
+  func fetchSearchResult<D: Decodable>(searchText: String, resModel: D.Type, onSuccess: @escaping onSuccessCompletion, onError: @escaping onFailureCompletion) {
     
     let params = ["q": "\(searchText)"]
     
-    AF.request(baseURL, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseData { response in
-      
-      if let error = response.error {
-        
-        print("error req data \(error.localizedDescription)")
-        competion(nil)
+    AF.request(baseURL, method: .get, parameters: params, encoding: URLEncoding.default).responseData { response in
+    
+      guard let data = response.data else {
+        print(Errors.cantGetData.log)
+        onError(.cantGetData)
         return
       }
+            
+      //MARK: - Decode response
+      let decoder = MyDecoder(data: data)
       
-      guard let data = response.data else { return }
+      switch decoder.decode(model: resModel) {
+        
+      case .success(let responseModel):
       
-      let decoder = JSONDecoder()
-    
-      do {
+        onSuccess(responseModel)
+      
+      case .failure(let error):
         
-        let objects = try decoder.decode(ResponseRepositoriesModel.self, from: data)
-        competion(objects)
-        
-      } catch let jsonError {
-        
-        print("Faild to decode JSON", jsonError)
-        competion(nil)
-        
+        print(error.log)
+        onError(error)
       }
     }
   }

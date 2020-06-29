@@ -8,19 +8,24 @@
 
 import Foundation
 
-struct ResponseRepositoriesModel: Decodable {
+class ResponseRepositoriesModel: Decodable {
   
-    let items: [Item]
-
-    enum CodingKeys: String, CodingKey {
-      
-        case items = "items"
-    }
+  let items: [Item]
+  
+  enum CodingKeys: String, CodingKey {
+    case items = "items"
+  }
+  
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    self.items = try container.decode([Item].self, forKey: .items)
+  }
 }
 
 // MARK: - Item
 
-struct Item: Decodable {
+class Item: Decodable {
   
   let name: String
   let fullName: String
@@ -41,17 +46,37 @@ struct Item: Decodable {
     case updatedAt = "updated_at"
     case starzCount = "stargazers_count"
     case language = "language"
-    
   }
+  
+  required init(from decoder: Decoder) throws {
+    
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    self.name = try container.decode(String.self, forKey: .name)
+    self.fullName = try container.decode(String.self, forKey: .fullName)
+    self.owner = try container.decode(Owner.self, forKey: .owner)
+    self.htmlURL = try container.decode(String.self, forKey: .htmlURL)
+    self.itemDescription = try container.decodeIfPresent(String.self, forKey: .itemDescription)
+    self.updatedAt = try container.decode(String.self, forKey: .updatedAt)
+    self.starzCount = try container.decode(Int.self, forKey: .starzCount)
+    self.language = try container.decodeIfPresent(String.self, forKey: .language)
+  }
+  
 }
 
 // MARK: - Owner
 
-struct Owner: Decodable {
+class Owner: Decodable {
   
-    let avatarURL: String?
-
-    enum CodingKeys: String, CodingKey {
-        case avatarURL = "avatar_url"
-    }
+  let avatarURL: String?
+  
+  enum CodingKeys: String, CodingKey {
+    case avatarURL = "avatar_url"
+  }
+  
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    self.avatarURL = try container.decodeIfPresent(String.self, forKey: .avatarURL)
+  }
 }
