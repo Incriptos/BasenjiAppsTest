@@ -21,20 +21,33 @@ class ListPresenter {
   
   weak var delegate: ListPresenterDelegate?
   
-  var repos = [Item]()
-  var sortedRepos = [Item]()
+  var repos: [RepositoriesDataModel] = []
+  var sortedRepos: [RepositoriesDataModel] = []
   
   //MARK: - GET Repos
   
   func getSearchByName(repoName: String) {
     
-    NetworkService.shared.fetchSearchResult(searchText: repoName, resModel: ResponseRepositoriesModel.self, onSuccess: { response in
+    NetworkService.shared.fetchSearchResult(searchText: repoName, resModel: ResponseRepositoriesModel.self, onSuccess: { [weak self] response in
+      guard let `self` = self else { return }
       
-      print(response)
+      let model = response as! ResponseRepositoriesModel
+      
+      self.fillInArray(model: model) { status in
+        
+        switch status {
+      
+        case .Success:
+          self.delegate?.updateUI()
+        case .Failure:
+          self.delegate?.showError()
+        }
+      }
+      
       
     }) { errors in
       
-      print(errors)
+      self.delegate?.showError()
       
     }
     
@@ -42,18 +55,17 @@ class ListPresenter {
   }
 
   
-  
-  
-  
-  
-  
- private func sortByStars() {
+  private func fillInArray(model: ResponseRepositoriesModel, completion: @escaping statusCompletion) {
+    repos.removeAll()
+    for object in model.items {
+      let model = RepositoriesDataModel(avatar: object.owner.avatarURL ?? "", name: object.name, fullName: object.fullName, htmlURL: object.htmlURL, itemDescription: object.itemDescription
+        ?? "Описание отсуцтвует", updatedAt: object.updatedAt, starzCount: object.starzCount, language: object.language ?? "Неизвестно")
+      repos.append(model)
+    }
     sortedRepos.removeAll()
     sortedRepos = self.repos.sorted {$0.starzCount > $1.starzCount}
+    completion(.Success)
   }
-  
-  
-  
 }
 
 

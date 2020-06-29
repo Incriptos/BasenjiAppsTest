@@ -25,7 +25,7 @@ extension ListController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     let item = presenter.sortedRepos[indexPath.row]
     
-    return cell.configureCell(name: item.name, starCount: item.starzCount, avatarURL: item.owner.avatarURL)
+    return cell.configureCell(name: item.name, starCount: item.starzCount, avatarURL: item.avatar)
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -33,7 +33,6 @@ extension ListController: UICollectionViewDataSource, UICollectionViewDelegate, 
     let item = presenter.repos[indexPath.row]
     
     let controller: DetailsController = DetailsController()
-    controller.item = item
     navigationController?.pushViewController(controller, animated: true)
   }
   
