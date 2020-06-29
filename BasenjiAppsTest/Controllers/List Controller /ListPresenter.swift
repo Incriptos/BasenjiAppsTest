@@ -29,10 +29,9 @@ class ListPresenter {
   func getSearchByName(repoName: String) {
     
     NetworkService.shared.fetchSearchResult(searchText: repoName, onSuccess: { [weak self] response in
+      
       guard let `self` = self else { return }
-      
       let model = response as! ResponseRepositoriesModel
-      
       self.fillInArray(model: model) { status in
         
         switch status {
@@ -44,16 +43,12 @@ class ListPresenter {
         }
       }
       
-      
     }) { errors in
       
       self.delegate?.showError()
       
     }
-    
-    
   }
-
   
   private func fillInArray(model: ResponseRepositoriesModel, completion: @escaping statusCompletion) {
     repos.removeAll()

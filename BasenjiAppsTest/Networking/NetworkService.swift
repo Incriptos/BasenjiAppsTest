@@ -12,9 +12,9 @@ import Alamofire
 
 final class NetworkService {
   
+  typealias decodableModel = Decodable
   typealias onSuccessCompletion = (decodableModel) -> ()
   typealias onFailureCompletion = (Error) -> ()
-   typealias decodableModel = Decodable
   
   static let shared = NetworkService()
   
