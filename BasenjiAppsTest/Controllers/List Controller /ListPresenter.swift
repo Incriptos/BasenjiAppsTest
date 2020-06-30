@@ -61,7 +61,7 @@ class ListPresenter {
     repos.removeAll()
     self.clearCoreData()
     for object in model.items {
-      
+      // NEED Refactoring 
       let model = RepositoriesDataModel(avatar: object.owner.avatarURL ?? "userAvatar", name: object.name, fullName: object.fullName, htmlURL: object.htmlURL, itemDescription: object.itemDescription
         ?? "Описание отсуцтвует", updatedAt: object.updatedAt, starzCount: object.starzCount, language: object.language ?? "Неизвестно")
       repos.append(model)
