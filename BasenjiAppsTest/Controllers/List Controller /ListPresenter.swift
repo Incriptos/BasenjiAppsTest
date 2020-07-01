@@ -24,8 +24,9 @@ class ListPresenter {
   
   weak var delegate: ListPresenterDelegate?
   
+  //MARK: - ReposArray
+  
   var repos: [RepositoriesDataModel] = []
-  var sortedRepos: [RepositoriesDataModel] = []
   var coreRepos = [Repositories]()
   var sortedCoreRepos = [Repositories]()
   
@@ -57,9 +58,13 @@ class ListPresenter {
     }
   }
   
+  //MARK: - FillArray's and  Save to CoreData
+  
   private func fillInArray(model: ResponseRepositoriesModel, completion: @escaping statusCompletion) {
+    
     repos.removeAll()
     self.clearCoreData()
+    
     for object in model.items {
       // NEED Refactoring 
       let model = RepositoriesDataModel(avatar: object.owner.avatarURL ?? "userAvatar", name: object.name, fullName: object.fullName, htmlURL: object.htmlURL, itemDescription: object.itemDescription
@@ -78,12 +83,11 @@ class ListPresenter {
       self.persistenceManager.save()
     }
     
-    sortedRepos.removeAll()
-    sortedRepos = self.repos.sorted {$0.starzCount > $1.starzCount}
     completion(.Success)
   }
   
   func fetchDataFromCoreData() {
+    
     persistenceManager.fetchData(Repositories.self) { [weak self] (repos) in
       self?.coreRepos = repos
       self?.sortedCoreRepos = self?.coreRepos.sorted {$0.starz > $1.starz} as! [Repositories]

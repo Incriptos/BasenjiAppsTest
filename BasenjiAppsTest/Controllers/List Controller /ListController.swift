@@ -108,6 +108,7 @@ class ListController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
     presenter.fetchDataFromCoreData()
   }
   
@@ -123,6 +124,7 @@ class ListController: UIViewController {
   
   @objc
   private func searchButtonTapped(_ sender: UIButton) {
+    
     activity.isHidden = false
     listCollectionView.isHidden = true
     guard let searchString = searchTextField.text else { return }
@@ -137,6 +139,7 @@ extension ListController: ListPresenterDelegate {
   func updateUI() {
     
     DispatchQueue.main.async {
+      
       self.activity.isHidden = true
       self.listCollectionView.isHidden = false
       self.listCollectionView.reloadData()
@@ -147,6 +150,7 @@ extension ListController: ListPresenterDelegate {
   func showError() {
     
     DispatchQueue.main.async {
+      
       self.activity.isHidden = true
       let alertController = UIAlertController(title: "Ошибка", message: "Что-то пошло не так", preferredStyle: .alert)
       let okButton = UIAlertAction(title: "ОК", style: .cancel) { action in
